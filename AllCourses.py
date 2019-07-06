@@ -12,6 +12,11 @@ course_name_2
 ...
 course_name_AnyNumber
 
+
+# to use:
+# upload_courses_from_file = False
+# ALL_COURSES = AllCourses(upload_courses_from_file).get_list_of_courses()
+
 Written by: Omer Liberman (July 2nd).
 """
 

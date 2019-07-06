@@ -76,25 +76,6 @@ def investment_evaluation(pre_assignment_preferences, post_assignment_results):
     return tot / to_norm
 
 
-class Satisfaction:
-
-    def __init__(self, evaluation_func=borda_count_evaluation):
-        """
-        :param evaluation_func: the function which evaluates the level of satisfaction
-        base on the results of the assignment.
-        """
-        self.eval_func = evaluation_func
-
-    def evaluate(self, pre_assignment_preferences, post_assignment_results):
-        """
-        :param pre_assignment_preferences: dictionary. shape: {course1 : rank}
-        :param post_assignment_results: array which describes the courses the student got
-        after courses assignment process.
-        :return: number which describes level of satisfaction.
-        """
-        return self.eval_func(pre_assignment_preferences, post_assignment_results)
-
-
 # # Testing:
 # def main():
 #     pre = {"c1":3, "c2":1, "c3":11}
