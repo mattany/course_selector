@@ -13,10 +13,10 @@ import enum
 
 
 class Strategy(enum.Enum):
-    Const = "Constant"
-    Quad = "Quadratic"
-    Exp = "Exp"
-    Linear = "Linear"
+    Const = 0
+    Quad = 1
+    Exp = 2
+    Linear = 3
 
 
 def strategy_factory(strategy, num_of_courses, points_to_share):
