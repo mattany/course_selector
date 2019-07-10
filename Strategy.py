@@ -1,9 +1,9 @@
 """
 Strategy.py
 --------------
-This file includes the strategy each student has.
+This file includes the _points_distribution each student has.
 Strategy is defined by a function, then defined to distribution of
-all the points student can distribute over the courses.
+all the points student can distribute over the _courses.
 
 Written by: Linoy Palas (July 8th)
 """
@@ -22,9 +22,9 @@ class Strategy(enum.Enum):
 def strategy_factory(strategy, num_of_courses, points_to_share):
     """
     This func is a factory of the strategies.
-    :param strategy: a strategy type (enum).
-    :param num_of_courses: the number of courses.
-    :param points_to_share: the number of points to distribute between courses.
+    :param strategy: a _points_distribution type (enum).
+    :param num_of_courses: the number of _courses.
+    :param points_to_share: the number of points to distribute between _courses.
     :return: array where in the i'th coord there is the number of points for the
     i'th course in priority.
     """
@@ -118,17 +118,17 @@ def constant(num_of_courses, points_to_share):
 
 # if __name__ == '__main__':
 #     import matplotlib.pyplot as plt
-#     # Create an object with a number of desirable courses and points.
-#     # In this case for example- 5 courses and 100 points divided (change it if you want as your wish)
-#     strategy = Strategies(5, 100)
+#     # Create an object with a number of desirable _courses and points.
+#     # In this case for example- 5 _courses and 100 points divided (change it if you want as your wish)
+#     _points_distribution = Strategies(5, 100)
 #     # a vector that returned from the function according to the desired point distribution (exp, const, lin,quadratic):
-#     vector_score_by_function = strategy.linear()
+#     vector_score_by_function = _points_distribution.linear()
 #
-#     # a list that simply contains numbers from 1 to the number of courses so that we can see in the graph the ratio:
-#     vector_of_courses = list(range(1, strategy.courses+1))
+#     # a list that simply contains numbers from 1 to the number of _courses so that we can see in the graph the ratio:
+#     vector_of_courses = list(range(1, _points_distribution._courses+1))
 #
 #     # plot the graph
 #     print(vector_of_courses)
 #     print(vector_score_by_function)
-#     plt.plot(vector_of_courses, vector_score_by_function[:strategy.courses])
+#     plt.plot(vector_of_courses, vector_score_by_function[:_points_distribution._courses])
 #     plt.show()

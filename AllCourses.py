@@ -1,9 +1,9 @@
 """
 AllCourses.py
 --------------
-This file includes the list of all the courses in school
-There is a default list of courses which includes 8 well known courses
-or you can upload new courses from a file text is called "AllCourses.txt" and
+This file includes the list of all the _courses in school
+There is a default list of _courses which includes 8 well known _courses
+or you can upload new _courses from a file text is called "AllCourses.txt" and
 looks like:
 
 AllCourses.txt:
@@ -23,8 +23,8 @@ Written by: Omer Liberman (July 2nd).
 
 def read_courses_from_file():
     """
-    Read given courses from a file (each course in separated line).
-    :return: array of the courses.
+    Read given _courses from a file (each course in separated line).
+    :return: array of the _courses.
     """
     courses = []
     with open("AllCourses.txt") as f:
@@ -46,7 +46,7 @@ class AllCourses:
 
     def get_list_of_courses(self):
         """
-        :return: the list of all courses in the school (list of strings).
+        :return: the list of all _courses in the school (list of strings).
         """
         return self.all_courses_list
 
