@@ -30,6 +30,7 @@ class Student:
         """
         self.strategy = strategy_factory(strategy, len(courses_list), points)  # array of the points distribution
         self.satisfaction_func = satisfaction_func
+        self.post_assignment_results = None
         self.courses_and_scores = None
 
         if random_courses:
@@ -49,13 +50,14 @@ class Student:
         for ind in range(len(self.courses)):
             self.courses_and_scores[self.courses[ind]] = self.strategy[ind]
 
-    def evaluate_satisfaction(self, post_assignment_results):
+    def evaluate_satisfaction(self):
         """
         :param post_assignment_results: array which describes the courses the student got
         after courses assignment process.
         :return: the evaluation score (float in range [0,1])
         """
-        return self.satisfaction_func(self.courses_and_scores, post_assignment_results)
+        return self.satisfaction_func(self.courses_and_scores,
+                                      self.post_assignment_results)
 
     def get_courses_and_scores(self):
         """
@@ -63,3 +65,8 @@ class Student:
         matched it.
         """
         return self.courses_and_scores
+
+    def set_assignment(self, post_assignment_results):
+        self.post_assignment_results = post_assignment_results
+
+
