@@ -1,3 +1,5 @@
+import math
+
 from AllCourses import AllCourses
 from Matcher import Matcher
 from Strategy import Strategy
@@ -41,7 +43,12 @@ def get_satisfactions(students):
 
 def get_results():
     cakes = get_cakes()
+    one_percent = math.floor(len(cakes)/100)                      #TODO delete - prints
+    percents = [(one_percent * i, i) for i in range(100)]        #TODO delete - prints
     for cake in cakes:
+        if len(percents) > 0 and cakes[percents[0][0]] == cake:                       #TODO delete - prints
+            print(percents[0][1])                                  #TODO delete - prints
+            percents.pop(0)                                   #TODO delete - prints
         strategy_dict = get_strategy_dict(cake)
         matcher = Matcher(all_courses, strategy_dict, CLASS_SIZE).match()
         cake += get_satisfactions(matcher)
@@ -51,4 +58,6 @@ def get_results():
 if __name__ == "__main__":
     # print(str(get_strategy_dict([0, 1, 5, 1])))
     f = open("combinations.txt","w+")
-    f.write(str(get_results()))
+    for item in get_results():
+        f.write('%s\n' % item)
+    f.close()
