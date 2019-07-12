@@ -1,12 +1,12 @@
 import math
 
+from itertools import *
 import numpy as np
 from AllCourses import AllCourses
 from Matcher import Matcher
 from Strategy import Strategy
 import time
 
-OUTPUT_TEXT_FILE_NAME = "combinations_2.txt"
 all_courses = AllCourses().get_list_of_courses()
 num_of_students = 100
 CLASS_SIZE = 30
