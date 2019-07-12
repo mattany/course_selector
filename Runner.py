@@ -1,6 +1,7 @@
 import math
 
 from itertools import *
+import numpy as np
 from AllCourses import AllCourses
 from Matcher import Matcher
 from Strategy import Strategy
@@ -33,6 +34,12 @@ def cake_factory(cur_index, cake, cakes):
     return cakes
 
 
+def get_median(sats):
+    sats_array = np.array(sats)
+    median =  np.median(sats_array)
+    return median
+
+
 def get_cakes():
     """
     :return: The list of list generated in the factory. This is the initial call to the recursive function.
@@ -55,11 +62,16 @@ def get_satisfactions(students):
     and the average overall satisfaction at the end.
     """
     sats_tuples = [[0, 0] for i in range(len(Strategy))]  # sum of satisfactions, count
+    individual_sats = []
     for student in students:
-        sats_tuples[student._strategy.value][0] += student.evaluate_satisfaction()
+        sat = student.evaluate_satisfaction()
+        sats_tuples[student._strategy.value][0] += sat
+        individual_sats.append(sat)
         sats_tuples[student._strategy.value][1] += 1
+    median = get_median(individual_sats)
     sats = [sats_tuples[i][0] / sats_tuples[i][1] if sats_tuples[i][1] != 0 else 0 for i in range(len(sats_tuples))]
-    sats.append(sum(sats_tuples[i][0] for i in range(len(sats_tuples))) / num_of_students)
+    sats.append(median)
+    # sats.append(sum(sats_tuples[i][0] for i in range(len(sats_tuples))) / num_of_students)
     return sats
 
 
