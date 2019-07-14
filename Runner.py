@@ -111,29 +111,58 @@ def get_results():
     overall_avg_satisfaction]
     """
     cakes = get_cakes()
-    one_percent = math.floor(len(cakes) / 100)  # TODO delete - prints
-    percents = [(one_percent * i, i) for i in range(100)]  # TODO delete - prints
     for cake in cakes:
-        if len(percents) > 0 and cakes[percents[0][0]] == cake:  # TODO delete - prints
-            print(percents[0][1])  # TODO delete - prints
-            percents.pop(0)  # TODO delete - prints
         strategy_dict = get_strategy_dict(cake)
         matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
         cake += get_satisfactions(matcher)
     return cakes
 
 
-if __name__ == "__main__":
-    import time
-    t1_start = time.perf_counter()  # todo delete timers
-    t2_start = time.process_time()
+def run():
+    """
+    runs the entire file's methods.
+    Produces the file with the data.
+    """
     f = open(OUTPUT_TEXT_FILE, "w+")
     for item in get_results():
-        f.write('%s\n' % item)
+        write_to_file = str(item).strip('[]')
+        write_to_file += "\n"
+        f.write(write_to_file)
     f.close()
-    t1_stop = time.perf_counter()
-    t2_stop = time.process_time()
-    print("--------------------------------------------------")
-    print("Elapsed time: %.1f [min]" % ((t1_stop - t1_start) / 60))
-    print("CPU process time: %.1f [min]" % ((t2_stop - t2_start) / 60))
-    print("--------------------------------------------------")
+
+
+# ------------- FOR TESTING : -------------
+
+# def get_results():
+#     """
+#     :return: a list of lists containing
+#     [num_students_in_str_1, ..., num_students_in_str_n, avg_satisfaction_of_str_1, ..., avg_satisfaction_of_str_n,
+#     overall_avg_satisfaction]
+#     """
+#     cakes = get_cakes()
+#     one_percent = math.floor(len(cakes) / 100)  # TODO delete - prints
+#     percents = [(one_percent * i, i) for i in range(100)]  # TODO delete - prints
+#     for cake in cakes:
+#         if len(percents) > 0 and cakes[percents[0][0]] == cake:  # TODO delete - prints
+#             print(percents[0][1])  # TODO delete - prints
+#             percents.pop(0)  # TODO delete - prints
+#         strategy_dict = get_strategy_dict(cake)
+#         matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
+#         cake += get_satisfactions(matcher)
+#     return cakes
+#
+#
+# if __name__ == "__main__":
+#     import time
+#     t1_start = time.perf_counter()  # todo delete timers
+#     t2_start = time.process_time()
+#     f = open(OUTPUT_TEXT_FILE, "w+")
+#     for item in get_results():
+#         f.write('%s\n' % item)
+#     f.close()
+#     t1_stop = time.perf_counter()
+#     t2_stop = time.process_time()
+#     print("--------------------------------------------------")
+#     print("Elapsed time: %.1f [min]" % ((t1_stop - t1_start) / 60))
+#     print("CPU process time: %.1f [min]" % ((t2_stop - t2_start) / 60))
+#     print("--------------------------------------------------")

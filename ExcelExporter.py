@@ -44,8 +44,8 @@ class ExcelExporter:
         :param input_text_file: the text file should be parsed to excel.
         :param output_excel_file: the address of the output excel file.
         """
-        self.input_text_file = input_text_file
-        self.output_excel_file = output_excel_file
+        self._input_text_file = input_text_file
+        self._output_excel_file = output_excel_file
         self.columns = None
 
     def _create_columns_titles(self):
@@ -70,9 +70,9 @@ class ExcelExporter:
         This file includes all the data extracted.
         The excel file is named EXCEL_DATA_FILE
         """
-        df = pd.read_csv(self.input_text_file)
+        df = pd.read_csv(self._input_text_file)
         df.columns = self._create_columns_titles()
-        df.to_csv(self.output_excel_file)
+        df.to_csv(self._output_excel_file)
 
     def run(self):
         """
@@ -80,5 +80,8 @@ class ExcelExporter:
         :return:
         """
         self._convert_results_file_to_excel()
+
+    def get_excel_file_name(self):
+        return self._output_excel_file
 
 
