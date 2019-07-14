@@ -13,24 +13,22 @@ Written by: Linoy Palas (July 10th).
 
 from Student import Student
 
-"""
-Number of students in class.
-"""
-CLASS_SIZE = 30
-
 
 class Matcher:
-    def __init__(self, courses_list, strategy_dict, class_size=CLASS_SIZE):
+    def __init__(self, courses_list, strategy_dict, class_size, random_list_for_each_student=False):
 
         """
         :param courses_list: list of _courses.
         :param strategy_dict: dict which looks like {_strategy: num_of_students_uses_this _strategy}
         :param class_size: the number of students which can be in each course.
+        :param random_list_for_each_student: boolean. describes if each student has his own preferences list
+        or all students have same preferences.
         """
         self._courses_list = courses_list
         self._strategy_dict = strategy_dict
         self._class_size = class_size
         self._students_list = []
+        self.random_list_for_each_student = random_list_for_each_student
 
     def _set_student_list(self):
         """
@@ -40,7 +38,7 @@ class Matcher:
         """
         for key, value in self._strategy_dict.items():
             for i in range(value):
-                student = Student(key, self._courses_list)
+                student = Student(key, self._courses_list, self.random_list_for_each_student)
                 student.fit_courses_and_scores()
                 self._students_list.append(student)
 

@@ -20,8 +20,8 @@ DEF_NUM_OF_POINTS = 100
 
 class Student:
 
-    def __init__(self, strategy, courses_list, points=DEF_NUM_OF_POINTS, satisfaction_func=borda_count_evaluation,
-                 random_courses=False):
+    def __init__(self, strategy, courses_list, points=DEF_NUM_OF_POINTS, random_courses=False,
+                 satisfaction_func=borda_count_evaluation):
         """
         :param strategy: the _points_distribution of points distribution between _courses.
         :param courses_list: the list of _courses which the student select from.
@@ -33,7 +33,7 @@ class Student:
         # array of the points distribution:
         self._points_distribution = strategy_factory(self._strategy, len(courses_list), points)
         self._satisfaction_func = satisfaction_func
-        self._post_assignment_results = []
+        self._assignments = []
         self.courses_and_scores = None
 
         if random_courses:
@@ -58,7 +58,7 @@ class Student:
         :return: the evaluation score (float in range [0,1])
         """
         return self._satisfaction_func(self.courses_and_scores,
-                                       self._post_assignment_results)
+                                       self._assignments)
 
     def get_courses_and_scores(self):
         """
@@ -68,4 +68,15 @@ class Student:
         return self.courses_and_scores
 
     def add_assignment(self, new_course):
-        self._post_assignment_results.append(new_course)
+        """
+        Adds an assignment to the self._assignments.
+        Means that, the student is registered to the course!
+        :param new_course: the course (string).
+        """
+        self._assignments.append(new_course)
+
+    def get_strategy_by_value(self):
+        """
+        :return: the VALUE of the strategy of the student.
+        """
+        return self._strategy.value

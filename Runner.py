@@ -1,17 +1,45 @@
-import math
+"""
+Runner.py
+--------------
+This file produces a file which includes all the situations.
 
-from itertools import *
+Written by: Mattan Yerushalmi.
+"""
+
+# ------- IMPORTS ------- #
+import math
 import numpy as np
 from AllCourses import AllCourses
 from Matcher import Matcher
 from Strategy import Strategy
-import time
 
-all_courses = AllCourses().get_list_of_courses()
+# ------- CONSTANTS ------- #
+
+"""
+The file where the data is exported to.
+"""
+OUTPUT_TEXT_FILE = "combinations_2.txt"
+
+"""
+List of all courses.
+"""
+ALL_COURSES = AllCourses().get_list_of_courses()
+
+"""
+- Number of students 
+- The number of tactics (strategies) which students can take in order
+  to distribute their points over the available courses.
+"""
 num_of_students = 100
-CLASS_SIZE = 30
 num_of_strategies = len(Strategy)
 
+"""
+Size of class (num of students can be in single course.
+"""
+CLASS_SIZE = 30
+
+
+# ------- METHODS ------- #
 
 def cake_factory(cur_index, cake, cakes):
     """
@@ -34,9 +62,9 @@ def cake_factory(cur_index, cake, cakes):
     return cakes
 
 
-def get_median(sats):
-    sats_array = np.array(sats)
-    median =  np.median(sats_array)
+def get_median(satisfactions):
+    satisfactions_array = np.array(satisfactions)
+    median = np.median(satisfactions_array)
     return median
 
 
@@ -61,18 +89,19 @@ def get_satisfactions(students):
     :return: A list of the average satisfactions for each strategy (ordered according to the enum),
     and the average overall satisfaction at the end.
     """
-    sats_tuples = [[0, 0] for i in range(len(Strategy))]  # sum of satisfactions, count
-    individual_sats = []
+    satisfactions_tuples = [[0, 0] for i in range(num_of_strategies)]  # sum of satisfactions, count
+    individual_satisfaction = []
     for student in students:
         sat = student.evaluate_satisfaction()
-        sats_tuples[student._strategy.value][0] += sat
-        individual_sats.append(sat)
-        sats_tuples[student._strategy.value][1] += 1
-    median = get_median(individual_sats)
-    sats = [sats_tuples[i][0] / sats_tuples[i][1] if sats_tuples[i][1] != 0 else 0 for i in range(len(sats_tuples))]
-    sats.append(median)
-    # sats.append(sum(sats_tuples[i][0] for i in range(len(sats_tuples))) / num_of_students)
-    return sats
+        satisfactions_tuples[student.get_strategy_by_value()][0] += sat
+        individual_satisfaction.append(sat)
+        satisfactions_tuples[student.get_strategy_by_value()][1] += 1
+    median = get_median(individual_satisfaction)
+    satisfactions = [satisfactions_tuples[i][0] / satisfactions_tuples[i][1] if satisfactions_tuples[i][1] != 0 else 0
+                     for i in
+                     range(len(satisfactions_tuples))]
+    satisfactions.append(median)
+    return satisfactions
 
 
 def get_results():
@@ -89,16 +118,16 @@ def get_results():
             print(percents[0][1])  # TODO delete - prints
             percents.pop(0)  # TODO delete - prints
         strategy_dict = get_strategy_dict(cake)
-        matcher = Matcher(all_courses, strategy_dict, CLASS_SIZE).match()
+        matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
         cake += get_satisfactions(matcher)
     return cakes
 
 
 if __name__ == "__main__":
-    # print(str(get_strategy_dict([0, 1, 5, 1])))
-    t1_start = time.perf_counter()                    #todo delete timers
+    import time
+    t1_start = time.perf_counter()  # todo delete timers
     t2_start = time.process_time()
-    f = open("combinations_2.txt", "w+")
+    f = open(OUTPUT_TEXT_FILE, "w+")
     for item in get_results():
         f.write('%s\n' % item)
     f.close()
