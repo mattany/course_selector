@@ -8,7 +8,7 @@ And then we use the library matplotlib.pyplot to create beautiful graphs.
 
 Written by: Omer Liberman (July 14nd).
 """
-
+import os
 from Runner import run
 from ExcelExporter import ExcelExporter
 import matplotlib.pyplot as plt
@@ -28,9 +28,8 @@ def create_data_excel_file():
 
 
 dataset_address = create_data_excel_file()
-
 data_frame = pd.read_csv(dataset_address)
 
-print("A")
+
 
 
