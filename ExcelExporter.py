@@ -12,20 +12,8 @@ Example:
 
 Written by: Omer Liberman (July 12nd).
 """
-
-from Runner import OUTPUT_TEXT_FILE
 from Strategy import Strategy
 import pandas as pd
-
-"""
-The name of the excel file which is created and includes the data extracted by Runner.
-"""
-OUTPUT_EXCEL_FILE_NAME = "data.csv"
-
-"""
-Number of strategies.
-"""
-NUM_OF_STRATEGIES = len(Strategy)
 
 """
 Columns Headlines
@@ -39,7 +27,7 @@ total_satisfaction_headline = "Satisfaction Rate (all students)"
 
 class ExcelExporter:
 
-    def __init__(self, input_text_file=OUTPUT_TEXT_FILE, output_excel_file=OUTPUT_EXCEL_FILE_NAME):
+    def __init__(self, input_text_file, output_excel_file):
         """
         :param input_text_file: the text file should be parsed to excel.
         :param output_excel_file: the address of the output excel file.
@@ -81,7 +69,5 @@ class ExcelExporter:
         """
         self._convert_results_file_to_excel()
 
-    def get_excel_file_name(self):
-        return self._output_excel_file
 
 
