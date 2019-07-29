@@ -63,8 +63,7 @@ class ExcelExporter:
         This file includes all the data extracted.
         The excel file is named EXCEL_DATA_FILE
         """
-        df = pd.read_csv(self._input_text_file)
-        df.columns = ExcelExporter._create_columns_titles()
+        df = pd.read_csv(self._input_text_file, names=ExcelExporter._create_columns_titles())
         df.to_csv(self._output_excel_file)
 
     def run(self):
