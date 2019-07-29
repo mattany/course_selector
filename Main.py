@@ -32,7 +32,7 @@ Relevant for the each student.
 POINTS_FOR_EACH_STUDENT = 100
 
 # The satisfaction func each student use to evaluate his assignments.
-SATISFACTION_FUNC = L1_norm_evaluation
+SATISFACTION_FUNC = borda_count_evaluation
 
 # Boolean value weather to upload the course list from a file.
 UPLOAD_COURSES_LIST_FROM_FILE = False
@@ -47,7 +47,7 @@ Technical Constants - relevant to data files and files uploading.
 DATA_TEXT_FILE = "rare_data.txt"
 
 # The name of the excel file which ExcelExporter.py converts the data from the text file to.
-DATA_EXCEL_FILE = "converted_data.csv"
+DATA_EXCEL_FILE = "excel_data.csv"
 
 """
 Debugging & Printing.
@@ -79,7 +79,6 @@ def main():
     # todo : complete the other process which is needed (Graphs for example)
 
     print("All tasks has been accomplished!")
-    return 0
 
 
 # ---- Methods: ---- #
