@@ -27,8 +27,8 @@ class Strategy(enum.Enum):
     Exp = 2
     # Using the func f(x) = x.
     Linear = 3
-    # # Randomize points distribution.
-    # Random = 4
+    # Randomize points distribution.
+    Random = 4
 
 
 def strategy_factory(strategy, num_of_courses, points_to_share):
@@ -52,8 +52,8 @@ def strategy_factory(strategy, num_of_courses, points_to_share):
     elif strategy == Strategy.Linear:
         return linear(num_of_courses, points_to_share)
 
-    # elif strategy == Strategy.Random:
-    #     return random_selection(num_of_courses, points_to_share)
+    elif strategy == Strategy.Random:
+        return random_selection(num_of_courses, points_to_share)
 
     else:
         raise Exception("No such type!")
