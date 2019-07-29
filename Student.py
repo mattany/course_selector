@@ -10,7 +10,6 @@ Each student has:
 
 Written by: Omer Liberman (July 5th).
 """
-
 from Main import POINTS_FOR_EACH_STUDENT, RANDOM_COURSES_SELECTION_FOR_EACH_STUDENT, SATISFACTION_FUNC
 from CoursesList import select_courses_randomly, select_courses_uniformly
 from Strategy import strategy_factory

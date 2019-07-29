@@ -161,3 +161,17 @@ def random_selection(num_of_courses, points_to_share):
 
     # r = random_selection(8, 100)
     # print(r)
+
+if __name__ == '__main__':
+    con = strategy_factory(Strategy.Const)
+    sq = strategy_factory(Strategy.SquaredPow, 8, 100)
+    ex = strategy_factory(Strategy.Exp, 8, 100)
+    lin = strategy_factory(Strategy.Linear, 8, 100)
+    ra = strategy_factory(Strategy.Random, 8, 100)
+
+    print(con)
+    print(sq)
+    print(ex)
+    print(lin)
+    print(ra)
+

@@ -6,8 +6,8 @@ Means that here we run the entire program, change constants, etc.
 
 Written by:
 """
-import os
 
+import os
 import Runner
 from ExcelExporter import ExcelExporter
 from Satisfaction import borda_count_evaluation, L1_norm_evaluation

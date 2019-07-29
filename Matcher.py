@@ -39,7 +39,7 @@ class Matcher:
         for key, value in self._strategy_dict.items():
             for i in range(value):
                 # key is the strategy, value is the number of students in the strategy.
-                student = Student(key, self._courses_list, self.random_list_for_each_student)
+                student = Student(key, self._courses_list)
                 student.fit_courses_and_scores()
                 self._students_list.append(student)
 
