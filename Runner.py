@@ -88,11 +88,13 @@ def get_results():
     [num_students_in_str_1, ..., num_students_in_str_n, avg_satisfaction_of_str_1, ..., avg_satisfaction_of_str_n,
     overall_avg_satisfaction]
     """
+    matcher = Matcher(ALL_COURSES, None, CLASS_SIZE)
+
     cakes = get_cakes()
     for cake in cakes:
         strategy_dict = get_strategy_dict(cake)
-        matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
-        cake += get_satisfactions(matcher)
+        matcher.set_strategy_dict(strategy_dict)
+        cake += get_satisfactions(matcher.match())
     return cakes
 
 

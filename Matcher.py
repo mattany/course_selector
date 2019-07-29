@@ -55,6 +55,12 @@ class Matcher:
             for i in range(self._class_size):
                 self._students_list[i].add_assignment(course)
 
+    def set_courses_list(self, courses_list):
+        self._courses_list = courses_list
+
+    def set_strategy_dict(self, strategy_dict):
+        self._strategy_dict = strategy_dict
+
     def match(self):
         """
         This method runs the other methods.

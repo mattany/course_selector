@@ -12,6 +12,11 @@ import numpy as np
 import random as rand
 import enum
 
+# --------
+# IMPORTANT : If you want to add another strategy - you should add it both to the
+# enum class and to the factory.
+# --------
+
 
 class Strategy(enum.Enum):
     # Uniform distribution over the courses.
