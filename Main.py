@@ -73,6 +73,7 @@ def main():
 
     # todo : complete the other process which is needed (Graphs for example)
 
+    print("All tasks has been accomplished!")
     return 0
 
 
@@ -109,7 +110,6 @@ def get_excel_file():
     """
     exporter = ExcelExporter(DATA_TEXT_FILE, DATA_EXCEL_FILE)
     exporter.run()
-    return
 
 
 if __name__ == '__main__':
