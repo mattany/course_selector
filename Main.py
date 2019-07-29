@@ -49,6 +49,11 @@ DATA_TEXT_FILE = "rare_data.txt"
 # The name of the excel file which ExcelExporter.py converts the data from the text file to.
 DATA_EXCEL_FILE = "converted_data.csv"
 
+"""
+Debugging & Printing.
+"""
+PRINT_EVERYTHING = True
+
 
 def main():
     """
@@ -60,14 +65,14 @@ def main():
     # Check if text file exists.
     print("Step 1 - Check if rare text file exists")
     if not is_text_file_exist():
-        print("Rare text file does not exist!\nCreating text file...")
+        print("  Rare text file does not exist!\n  Creating text file...")
         get_text_file()
     print("Rare text file does exist")
 
     # If text file exists, convert it to excel.
     print("Step 2 - Check if excel file exists")
     if not is_excel_file_exist():
-        print("Excel file doest not exist!\nCreating Excel file...")
+        print("  Excel file doest not exist!\n  Creating Excel file...")
         get_excel_file()
     print("Excel file does exist")
 

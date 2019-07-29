@@ -8,13 +8,19 @@ Written by: Mattan Yerushalmi.
 
 # ------- IMPORTS ------- #
 import numpy as np
+from scipy.special import comb
 from AllCourses import AllCourses
 from Matcher import Matcher
 from Strategy import Strategy
-from Main import UPLOAD_COURSES_LIST_FROM_FILE, NUM_OF_STRATEGIES, NUM_OF_STUDENTS, CLASS_SIZE, DATA_TEXT_FILE
+from Main import UPLOAD_COURSES_LIST_FROM_FILE, NUM_OF_STRATEGIES, NUM_OF_STUDENTS, CLASS_SIZE, DATA_TEXT_FILE, \
+    PRINT_EVERYTHING
 
 # List of all courses.
 ALL_COURSES = AllCourses(UPLOAD_COURSES_LIST_FROM_FILE).get_list_of_courses()
+
+# Just for checking progress when debugging:
+# should be : (num of students + num of strategies) choose
+NUM_OF_TEST_CASES = comb(NUM_OF_STUDENTS + NUM_OF_STRATEGIES, NUM_OF_STRATEGIES - 1, exact=True)
 
 
 # ------- METHODS ------- #
@@ -32,11 +38,9 @@ def cake_factory(cur_index, cake, cakes):
         cakes.append(cake.copy())
         return cakes
 
-    for i in range(NUM_OF_STUDENTS + 1 - sum([cake[j] for j in range(
-            cur_index)])):
+    for i in range(NUM_OF_STUDENTS + 1 - sum([cake[j] for j in range(cur_index)])):
         cake[cur_index] = i
         cakes = cake_factory(cur_index + 1, cake, cakes)
-
     return cakes
 
 
@@ -88,13 +92,17 @@ def get_results():
     [num_students_in_str_1, ..., num_students_in_str_n, avg_satisfaction_of_str_1, ..., avg_satisfaction_of_str_n,
     overall_avg_satisfaction]
     """
-    matcher = Matcher(ALL_COURSES, None, CLASS_SIZE)
-
     cakes = get_cakes()
+    cakes_counter = 0  # just to check progress ...
     for cake in cakes:
+        if PRINT_EVERYTHING and cakes_counter % 10000 == 0:  # just to check progress ..
+            print("   Num of lines in file: " + str(cakes_counter) + "/" + str(
+                NUM_OF_TEST_CASES) + ", progress rate: " + str(
+                100 * round(float(cakes_counter / NUM_OF_TEST_CASES), 2)))
         strategy_dict = get_strategy_dict(cake)
-        matcher.set_strategy_dict(strategy_dict)
-        cake += get_satisfactions(matcher.match())
+        matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
+        cake += get_satisfactions(matcher)
+        cakes_counter += 1  # just to check progress ..
     return cakes
 
 
@@ -109,54 +117,3 @@ def main_runner():
         write_to_file += "\n"
         f.write(write_to_file)
     f.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ------------- FOR TESTING : -------------
-
-# def get_results():
-#     """
-#     :return: a list of lists containing
-#     [num_students_in_str_1, ..., num_students_in_str_n, avg_satisfaction_of_str_1, ..., avg_satisfaction_of_str_n,
-#     overall_avg_satisfaction]
-#     """
-#     cakes = get_cakes()
-#     one_percent = math.floor(len(cakes) / 100)  # TODO delete - prints
-#     percents = [(one_percent * i, i) for i in range(100)]  # TODO delete - prints
-#     for cake in cakes:
-#         if len(percents) > 0 and cakes[percents[0][0]] == cake:  # TODO delete - prints
-#             print(percents[0][1])  # TODO delete - prints
-#             percents.pop(0)  # TODO delete - prints
-#         strategy_dict = get_strategy_dict(cake)
-#         matcher = Matcher(ALL_COURSES, strategy_dict, CLASS_SIZE).match()
-#         cake += get_satisfactions(matcher)
-#     return cakes
-#
-#
-# if __name__ == "__main__":
-#     import time
-#     t1_start = time.perf_counter()  # todo delete timers
-#     t2_start = time.process_time()
-#     f = open(OUTPUT_TEXT_FILE, "w+")
-#     for item in get_results():
-#         f.write('%s\n' % item)
-#     f.close()
-#     t1_stop = time.perf_counter()
-#     t2_stop = time.process_time()
-#     print("--------------------------------------------------")
-#     print("Elapsed time: %.1f [min]" % ((t1_stop - t1_start) / 60))
-#     print("CPU process time: %.1f [min]" % ((t2_stop - t2_start) / 60))
-#     print("--------------------------------------------------")
