@@ -43,7 +43,7 @@ def borda_count_evaluation(pre_assignment_preferences, post_assignment_results):
     return tot / to_norm
 
 
-def investment_evaluation(pre_assignment_preferences, post_assignment_results):
+def L1_norm_evaluation(pre_assignment_preferences, post_assignment_results):
     """
     Formula:
     if student got the i'th course in his ranking, the satisfaction rank receives:

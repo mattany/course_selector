@@ -9,7 +9,7 @@ Written by:
 import os
 
 from ExcelExporter import ExcelExporter
-from Satisfaction import borda_count_evaluation, investment_evaluation
+from Satisfaction import borda_count_evaluation, L1_norm_evaluation
 from Strategy import Strategy
 
 """
