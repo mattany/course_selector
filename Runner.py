@@ -96,7 +96,7 @@ def get_results():
     return cakes
 
 
-def run():
+def main_runner():
     """
     runs the entire file's methods.
     Produces the file with the data.

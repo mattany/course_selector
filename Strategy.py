@@ -112,7 +112,10 @@ def constant(num_of_courses, points_to_share):
     vector_of_points_to_return.reverse()
 
     return vector_of_points_to_return
-
+#
+#
+# def random(num_of_courses, points_to_share):
+#
 
 
 

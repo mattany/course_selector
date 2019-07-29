@@ -8,6 +8,7 @@ Written by:
 """
 import os
 
+import Runner
 from ExcelExporter import ExcelExporter
 from Satisfaction import borda_count_evaluation, L1_norm_evaluation
 from Strategy import Strategy
@@ -54,14 +55,21 @@ def main():
     Runs the entire process.
     Also checks that the needed file exists.
     """
+    print("Process is now beginning: ")
 
     # Check if text file exists.
+    print("Step 1 - Check if rare text file exists")
     if not is_text_file_exist():
+        print("Rare text file does not exist!\nCreating text file...")
         get_text_file()
+    print("Rare text file does exist")
 
     # If text file exists, convert it to excel.
+    print("Step 2 - Check if excel file exists")
     if not is_excel_file_exist():
+        print("Excel file doest not exist!\nCreating Excel file...")
         get_excel_file()
+    print("Excel file does exist")
 
     # todo : complete the other process which is needed (Graphs for example)
 
@@ -83,8 +91,7 @@ def get_text_file():
     """
     If the text file doesn't exist, calls Runner.py to prepare the text file.
     """
-    # todo
-    return
+    Runner.main_runner()
 
 
 def is_excel_file_exist():

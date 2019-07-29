@@ -39,7 +39,7 @@ class ExcelExporter:
         self.columns = None
 
     @staticmethod
-    def _create_columns_titles(self):
+    def _create_columns_titles():
         """
         :return: titles for the columns in the excel.
         IMPORTANT - IT WORKS ONLY FOR THIS PROJECT!
@@ -62,7 +62,7 @@ class ExcelExporter:
         The excel file is named EXCEL_DATA_FILE
         """
         df = pd.read_csv(self._input_text_file)
-        df.columns = self._create_columns_titles()
+        df.columns = ExcelExporter._create_columns_titles()
         df.to_csv(self._output_excel_file)
 
     def run(self):
