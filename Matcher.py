@@ -30,6 +30,9 @@ class Matcher:
         self._students_list = []
         self.random_list_for_each_student = random_list_for_each_student
 
+    def get_students_list(self):
+        return self._students_list
+
     def _set_student_list(self):
         """
         Creates the list of students base on their _strategy.

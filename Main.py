@@ -32,9 +32,7 @@ Relevant for the each student.
 POINTS_FOR_EACH_STUDENT = 100
 
 # The satisfaction func each student use to evaluate his assignments.
-all_satisfaction_funcs = [borda_count_evaluation, L1_norm_evaluation]
-func_ind = 0
-SATISFACTION_FUNC = all_satisfaction_funcs[func_ind]
+SATISFACTION_FUNC = L1_norm_evaluation
 
 # Boolean value weather to upload the course list from a file.
 UPLOAD_COURSES_LIST_FROM_FILE = False
@@ -46,10 +44,10 @@ RANDOM_COURSES_SELECTION_FOR_EACH_STUDENT = False
 Technical Constants - relevant to data files and files uploading.
 """
 # The name of the text file which Runner.py outputs the data to.
-DATA_TEXT_FILE = "rare_data_with_sat_func_" + str(func_ind) + ".txt"
+DATA_TEXT_FILE = "rare_data.txt"
 
 # The name of the excel file which ExcelExporter.py converts the data from the text file to.
-DATA_EXCEL_FILE = "excel_data_with_sat_func_" + str(func_ind) + ".csv"
+DATA_EXCEL_FILE = "converted_data.csv"
 
 """
 Debugging & Printing.
@@ -64,20 +62,19 @@ def main():
     """
     print("Process is now beginning: ")
 
-    for sat_func in range(len(all_satisfaction_funcs)):
-        # Check if text file exists.
-        print("Step 1 - Check if rare text file exists")
-        if not is_text_file_exist():
-            print("  Rare text file does not exist!\n  Creating text file...")
-            get_text_file()
-        print("Rare text file does exist")
+    # Check if text file exists.
+    print("Step 1 - Check if rare text file exists")
+    if not is_text_file_exist():
+        print("  Rare text file does not exist!\n  Creating text file...")
+        get_text_file()
+    print("Rare text file does exist")
 
-        # If text file exists, convert it to excel.
-        print("Step 2 - Check if excel file exists")
-        if not is_excel_file_exist():
-            print("  Excel file doest not exist!\n  Creating Excel file...")
-            get_excel_file()
-        print("Excel file does exist")
+    # If text file exists, convert it to excel.
+    print("Step 2 - Check if excel file exists")
+    if not is_excel_file_exist():
+        print("  Excel file doest not exist!\n  Creating Excel file...")
+        get_excel_file()
+    print("Excel file does exist")
 
     # todo : complete the other process which is needed (Graphs for example)
 
