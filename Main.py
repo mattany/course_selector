@@ -22,7 +22,7 @@ NUM_OF_STRATEGIES = len(Strategy)
 NUM_OF_STUDENTS = 100
 
 # Size of class.
-CLASS_SIZE = 0
+CLASS_SIZE = 30
 
 """
 Relevant for the each student.
@@ -43,10 +43,10 @@ RANDOM_COURSES_SELECTION_FOR_EACH_STUDENT = False
 Technical Constants - relevant to data files and files uploading.
 """
 # The name of the text file which Runner.py outputs the data to.
-DATA_TEXT_FILE = "combinations_2.txt"
+DATA_TEXT_FILE = "rare_data.txt"
 
 # The name of the excel file which ExcelExporter.py converts the data from the text file to.
-DATA_EXCEL_FILE = ""
+DATA_EXCEL_FILE = "converted_data.csv"
 
 
 def main():

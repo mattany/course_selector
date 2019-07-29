@@ -11,17 +11,16 @@ Each student has:
 Written by: Omer Liberman (July 5th).
 """
 
-from Satisfaction import borda_count_evaluation, investment_evaluation
+from Main import POINTS_FOR_EACH_STUDENT, RANDOM_COURSES_SELECTION_FOR_EACH_STUDENT, SATISFACTION_FUNC
 from CoursesList import select_courses_randomly, select_courses_uniformly
 from Strategy import strategy_factory
-
-DEF_NUM_OF_POINTS = 100
 
 
 class Student:
 
-    def __init__(self, strategy, courses_list, points=DEF_NUM_OF_POINTS, random_courses=False,
-                 satisfaction_func=borda_count_evaluation):
+    def __init__(self, strategy, courses_list, points=POINTS_FOR_EACH_STUDENT,
+                 random_courses=RANDOM_COURSES_SELECTION_FOR_EACH_STUDENT,
+                 satisfaction_func=SATISFACTION_FUNC):
         """
         :param strategy: the _points_distribution of points distribution between _courses.
         :param courses_list: the list of _courses which the student select from.

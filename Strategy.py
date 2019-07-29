@@ -13,9 +13,13 @@ import enum
 
 
 class Strategy(enum.Enum):
+    # Uniform distribution over the courses.
     Const = 0
-    Quad = 1
+    # Using the func f(x) = x^2.
+    SquaredPow = 1
+    # Using the func f(x) = e^x.
     Exp = 2
+    # Using the func f(x) = x.
     Linear = 3
 
 
@@ -31,8 +35,8 @@ def strategy_factory(strategy, num_of_courses, points_to_share):
     if strategy == Strategy.Const:
         return constant(num_of_courses, points_to_share)
 
-    elif strategy == Strategy.Quad:
-        return quadratic(num_of_courses, points_to_share)
+    elif strategy == Strategy.SquaredPow:
+        return power(num_of_courses, points_to_share)
 
     elif strategy == Strategy.Exp:
         return exp(num_of_courses, points_to_share)
@@ -78,11 +82,11 @@ def exp(num_of_courses, points_to_share):
     return vector_of_points_to_return
 
 
-def quadratic(num_of_courses, points_to_share):
+def power(num_of_courses, points_to_share, power_by=2):
     vector_of_points_to_return = [0] * (num_of_courses + 1)
     vector_of_points = [0] * (num_of_courses + 1)  # this list holds the score based on position
     for i in range(1, len(vector_of_points_to_return)):  # lst is the list
-        vector_of_points[i] = i * i
+        vector_of_points[i] = i ** power_by
     sum_of_score = sum(vector_of_points)  # this will be the sum of all the scores will used for
 
     for i in range(1, len(vector_of_points_to_return)):

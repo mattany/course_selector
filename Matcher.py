@@ -79,6 +79,6 @@ class Matcher:
 #     from Strategy import Strategy
 #
 #     course_list = AllCourses().get_list_of_courses()
-#     strategy_d = {Strategy.Linear: 2, Strategy.Const: 2, Strategy.Exp: 2, Strategy.Quad: 2}
+#     strategy_d = {Strategy.Linear: 2, Strategy.Const: 2, Strategy.Exp: 2, Strategy.SquaredPow: 2}
 #     matcher = Matcher(course_list, strategy_d, 3)
 #     print(matcher.match())

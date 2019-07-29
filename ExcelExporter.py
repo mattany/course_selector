@@ -12,8 +12,10 @@ Example:
 
 Written by: Omer Liberman (July 12nd).
 """
+
 from Strategy import Strategy
 import pandas as pd
+
 
 """
 Columns Headlines
@@ -36,6 +38,7 @@ class ExcelExporter:
         self._output_excel_file = output_excel_file
         self.columns = None
 
+    @staticmethod
     def _create_columns_titles(self):
         """
         :return: titles for the columns in the excel.
