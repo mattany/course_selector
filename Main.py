@@ -32,7 +32,7 @@ Relevant for the each student.
 POINTS_FOR_EACH_STUDENT = 100
 
 # The satisfaction func each student use to evaluate his assignments.
-SATISFACTION_FUNC = borda_count_evaluation
+SATISFACTION_FUNC = L1_norm_evaluation
 
 # Boolean value weather to upload the course list from a file.
 UPLOAD_COURSES_LIST_FROM_FILE = False
@@ -52,7 +52,11 @@ DATA_EXCEL_FILE = "excel_data.csv"
 """
 Debugging & Printing.
 """
+# Do all prints in Runner when creating the meta data files.
 PRINT_EVERYTHING = True
+
+# Prints progress after each num of iterations.
+REPORT_AFTER_EACH = 100000
 
 
 def main():

@@ -16,16 +16,15 @@ Written by: Omer Liberman (July 12nd).
 from Strategy import Strategy
 import pandas as pd
 
-
 """
 Columns Headlines
 """
-case_number_headline = "Case Number"
-num_of_students_headline = "Num of students from strategy "
-satisfaction_rate_headline = "Satisfaction Rate of students from strategy "
+num_of_students_headline = "Num of students - "
+satisfaction_rate_headline = "Avg Rate of students - "
 headlines_relevant_for_all_strategies = [num_of_students_headline, satisfaction_rate_headline]
 # -----
-total_satisfaction_headline = "Satisfaction Rate (all students)"
+median_satisfaction_headline = "Median (all students)"
+avg_satisfaction_headline = "Average (all students)"
 
 
 class ExcelExporter:
@@ -46,12 +45,12 @@ class ExcelExporter:
         IMPORTANT - IT WORKS ONLY FOR THIS PROJECT!
         """
         columns_titles = list()
-        # columns_titles.append(case_number_headline)
         for headline in headlines_relevant_for_all_strategies:
             for name, member in Strategy.__members__.items():
                 to_append = headline + str(name)
                 columns_titles.append(to_append)
-        columns_titles.append(total_satisfaction_headline)
+        columns_titles.append(median_satisfaction_headline)
+        columns_titles.append(avg_satisfaction_headline)
         return columns_titles
 
     def _convert_results_file_to_excel(self):
@@ -73,6 +72,3 @@ class ExcelExporter:
         :return:
         """
         self._convert_results_file_to_excel()
-
-
-
