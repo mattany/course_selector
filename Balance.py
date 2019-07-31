@@ -1,6 +1,8 @@
 """
 Balance.py
 --------------
+This file is separated from the other files!!!
+
 This file includes methods which intends to find balance point.
 Means that - finding a case where the satisfaction rate of all strategies
 is (approximately) equal.
@@ -77,5 +79,5 @@ def find_equilibrium(data_frame_loaded):
 
 
 if __name__ == '__main__':
-    df = load_data(DATA_FILE_L1_NORM)
+    df = load_data(DATA_FILE_BORDA_COUNT)
     find_equilibrium(df)
